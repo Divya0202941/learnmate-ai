@@ -24,11 +24,12 @@ app = FastAPI(
 )
 
 # CORS configuration for production (Vercel) and local dev
-allowed_origins_env = os.getenv("ALLOWED_ORIGINS", "")
+allowed_origins_env = os.getenv("ALLOWED_ORIGINS", "*")
 origins = [origin.strip() for origin in allowed_origins_env.split(",") if origin.strip()]
 
-if not origins:
-    origins = ["*"]
+for origin_item in ["https://learnmate-ai-pi.vercel.app", "*"]:
+    if origin_item not in origins:
+        origins.append(origin_item)
 
 app.add_middleware(
     CORSMiddleware,

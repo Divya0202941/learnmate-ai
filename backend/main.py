@@ -23,18 +23,26 @@ app = FastAPI(
     version="1.0.0"
 )
 
-# CORS configuration for production (Vercel) and local dev
-allowed_origins_env = os.getenv("ALLOWED_ORIGINS", "*")
+# CORS configuration for production Vercel frontend and local dev servers
+allowed_origins_env = os.getenv("ALLOWED_ORIGINS", "")
 origins = [origin.strip() for origin in allowed_origins_env.split(",") if origin.strip()]
 
-for origin_item in ["https://learnmate-ai-pi.vercel.app", "*"]:
+default_origins = [
+    "https://learnmate-ai-pi.vercel.app",
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+    "http://localhost:3000",
+]
+
+for origin_item in default_origins:
     if origin_item not in origins:
         origins.append(origin_item)
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
-    allow_credentials=False,
+    allow_origin_regex=r"https://.*\.vercel\.app",
+    allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )

@@ -68,6 +68,7 @@ class QuizGenerateResponse(BaseModel):
     difficulty: str
     questions: list[QuizItem]
 
+@app.get("/")
 @app.get("/health")
 def health_check():
     return {"status": "ok", "service": "LearnMate AI FastAPI"}

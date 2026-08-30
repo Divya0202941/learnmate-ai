@@ -103,6 +103,8 @@ def create_quiz(req: QuizGenerateRequest):
             count=req.count
         )
         return result
+    except ValueError as val_err:
+        raise HTTPException(status_code=400, detail=str(val_err))
     except Exception as err:
         raise HTTPException(status_code=500, detail=str(err))
 

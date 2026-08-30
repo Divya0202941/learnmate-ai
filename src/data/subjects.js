@@ -1,0 +1,97 @@
+export const SUBJECTS = [
+  {
+    id: 'python',
+    name: 'Python',
+    iconName: 'Code',
+    color: 'cyan',
+    badgeColor: 'bg-cyan-500/10 text-cyan-400 border-cyan-500/30',
+    gradient: 'from-cyan-500 to-blue-600',
+    description: 'Master core programming fundamentals, data structures, and algorithmic logic in Python.',
+    progress: 82,
+    currentTopic: 'Recursion',
+    topics: [
+      { id: 'py-1', name: 'Variables & Data Types', completed: true, difficulty: 'Easy' },
+      { id: 'py-2', name: 'Conditions & Control Flow', completed: true, difficulty: 'Easy' },
+      { id: 'py-3', name: 'Loops & Iterations', completed: true, difficulty: 'Medium' },
+      { id: 'py-4', name: 'Functions & Scope', completed: false, isWeak: true, difficulty: 'Medium' },
+      { id: 'py-5', name: 'Recursion', completed: false, isWeak: true, difficulty: 'Hard' },
+      { id: 'py-6', name: 'Object-Oriented Programming', completed: false, difficulty: 'Hard' },
+    ]
+  },
+  {
+    id: 'java',
+    name: 'Java',
+    iconName: 'Coffee',
+    color: 'purple',
+    badgeColor: 'bg-purple-500/10 text-purple-400 border-purple-500/30',
+    gradient: 'from-purple-500 to-indigo-600',
+    description: 'Object-oriented application development, multithreading, and memory management in Java.',
+    progress: 68,
+    currentTopic: 'Exception Handling',
+    topics: [
+      { id: 'java-1', name: 'Java Syntax & Basics', completed: true, difficulty: 'Easy' },
+      { id: 'java-2', name: 'Classes & Objects', completed: true, difficulty: 'Easy' },
+      { id: 'java-3', name: 'Inheritance & Polymorphism', completed: true, difficulty: 'Medium' },
+      { id: 'java-4', name: 'Exception Handling', completed: false, isWeak: true, difficulty: 'Medium' },
+      { id: 'java-5', name: 'Collections Framework', completed: false, difficulty: 'Hard' },
+      { id: 'java-6', name: 'Multithreading & Concurrency', completed: false, difficulty: 'Hard' },
+    ]
+  },
+  {
+    id: 'dsa',
+    name: 'Data Structures',
+    iconName: 'Network',
+    color: 'blue',
+    badgeColor: 'bg-blue-500/10 text-blue-400 border-blue-500/30',
+    gradient: 'from-blue-500 to-cyan-500',
+    description: 'Arrays, Trees, Graphs, Sorting algorithms, and algorithmic complexity (Big-O notation).',
+    progress: 74,
+    currentTopic: 'Binary Search Trees',
+    topics: [
+      { id: 'dsa-1', name: 'Arrays & Dynamic Lists', completed: true, difficulty: 'Easy' },
+      { id: 'dsa-2', name: 'Stacks & Queues', completed: true, difficulty: 'Easy' },
+      { id: 'dsa-3', name: 'Linked Lists', completed: true, difficulty: 'Medium' },
+      { id: 'dsa-4', name: 'Binary Search Trees', completed: false, difficulty: 'Medium' },
+      { id: 'dsa-5', name: 'Sorting & Searching Algorithms', completed: false, difficulty: 'Medium' },
+      { id: 'dsa-6', name: 'Graph Algorithms & Traversal', completed: false, difficulty: 'Hard' },
+    ]
+  },
+  {
+    id: 'dbms',
+    name: 'DBMS',
+    iconName: 'Database',
+    color: 'emerald',
+    badgeColor: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30',
+    gradient: 'from-emerald-500 to-teal-600',
+    description: 'Relational database systems, SQL queries, normalization, indexing, and ACID transactions.',
+    progress: 61,
+    currentTopic: 'Normalization',
+    topics: [
+      { id: 'dbms-1', name: 'ER Diagrams & Relational Model', completed: true, difficulty: 'Easy' },
+      { id: 'dbms-2', name: 'SQL Queries & Joins', completed: true, difficulty: 'Medium' },
+      { id: 'dbms-3', name: 'Normalization (1NF to BCNF)', completed: false, isWeak: true, difficulty: 'Medium' },
+      { id: 'dbms-4', name: 'ACID Properties & Transactions', completed: false, difficulty: 'Hard' },
+      { id: 'dbms-5', name: 'Indexing & Query Optimization', completed: false, difficulty: 'Hard' },
+      { id: 'dbms-6', name: 'NoSQL & Distributed DBs', completed: false, difficulty: 'Hard' },
+    ]
+  },
+  {
+    id: 'cn',
+    name: 'Computer Networks',
+    iconName: 'Wifi',
+    color: 'amber',
+    badgeColor: 'bg-amber-500/10 text-amber-400 border-amber-500/30',
+    gradient: 'from-amber-500 to-orange-600',
+    description: 'OSI 7-Layer model, TCP/IP, routing algorithms, DNS, HTTP/S protocols, and network security.',
+    progress: 55,
+    currentTopic: 'TCP/IP Handshake',
+    topics: [
+      { id: 'cn-1', name: 'OSI Model Layers', completed: true, difficulty: 'Easy' },
+      { id: 'cn-2', name: 'IP Addressing & Subnetting', completed: true, difficulty: 'Medium' },
+      { id: 'cn-3', name: 'TCP/IP Handshake & Protocols', completed: false, difficulty: 'Medium' },
+      { id: 'cn-4', name: 'Routing Protocols & BGP', completed: false, difficulty: 'Hard' },
+      { id: 'cn-5', name: 'DNS & HTTP/HTTPS Deep Dive', completed: false, difficulty: 'Medium' },
+      { id: 'cn-6', name: 'Network Security & Cryptography', completed: false, difficulty: 'Hard' },
+    ]
+  }
+];

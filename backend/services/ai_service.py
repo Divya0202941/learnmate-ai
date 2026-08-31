@@ -10,8 +10,9 @@ env_path = Path(__file__).resolve().parent.parent / ".env"
 
 def _call_groq(prompt: str, system_instruction: str, api_key: str) -> str:
     url = "https://api.groq.com/openai/v1/chat/completions"
+    clean_key = api_key.strip().strip('"').strip("'")
     headers = {
-        "Authorization": f"Bearer {api_key.strip()}",
+        "Authorization": f"Bearer {clean_key}",
         "Content-Type": "application/json"
     }
     models = ["llama-3.3-70b-versatile", "llama-3.1-8b-instant", "llama3-70b-8192", "mixtral-8x7b-32768"]
@@ -31,7 +32,9 @@ def _call_groq(prompt: str, system_instruction: str, api_key: str) -> str:
                 if fmt:
                     payload["response_format"] = fmt
                 response = requests.post(url, headers=headers, json=payload, timeout=25)
-                response.raise_for_status()
+                if response.status_code != 200:
+                    last_err = Exception(f"Groq API {response.status_code}: {response.text}")
+                    continue
                 data = response.json()
                 return data["choices"][0]["message"]["content"]
             except Exception as e:

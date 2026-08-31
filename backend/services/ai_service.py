@@ -18,23 +18,25 @@ def _call_groq(prompt: str, system_instruction: str, api_key: str) -> str:
     last_err = None
 
     for m in models:
-        try:
-            payload = {
-                "model": m,
-                "messages": [
-                    {"role": "system", "content": system_instruction},
-                    {"role": "user", "content": prompt}
-                ],
-                "response_format": {"type": "json_object"},
-                "temperature": 0.7
-            }
-            response = requests.post(url, headers=headers, json=payload, timeout=25)
-            response.raise_for_status()
-            data = response.json()
-            return data["choices"][0]["message"]["content"]
-        except Exception as e:
-            last_err = e
-            continue
+        for fmt in [{"type": "json_object"}, None]:
+            try:
+                payload = {
+                    "model": m,
+                    "messages": [
+                        {"role": "system", "content": system_instruction},
+                        {"role": "user", "content": prompt}
+                    ],
+                    "temperature": 0.7
+                }
+                if fmt:
+                    payload["response_format"] = fmt
+                response = requests.post(url, headers=headers, json=payload, timeout=25)
+                response.raise_for_status()
+                data = response.json()
+                return data["choices"][0]["message"]["content"]
+            except Exception as e:
+                last_err = e
+                continue
 
     raise last_err or Exception("Failed to receive response from Groq models.")
 

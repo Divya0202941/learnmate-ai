@@ -11,22 +11,32 @@ env_path = Path(__file__).resolve().parent.parent / ".env"
 def _call_groq(prompt: str, system_instruction: str, api_key: str) -> str:
     url = "https://api.groq.com/openai/v1/chat/completions"
     headers = {
-        "Authorization": f"Bearer {api_key}",
+        "Authorization": f"Bearer {api_key.strip()}",
         "Content-Type": "application/json"
     }
-    payload = {
-        "model": "llama-3.3-70b-versatile",
-        "messages": [
-            {"role": "system", "content": system_instruction},
-            {"role": "user", "content": prompt}
-        ],
-        "response_format": {"type": "json_object"},
-        "temperature": 0.7
-    }
-    response = requests.post(url, headers=headers, json=payload, timeout=25)
-    response.raise_for_status()
-    data = response.json()
-    return data["choices"][0]["message"]["content"]
+    models = ["llama-3.3-70b-versatile", "llama-3.1-8b-instant", "llama3-70b-8192", "mixtral-8x7b-32768"]
+    last_err = None
+
+    for m in models:
+        try:
+            payload = {
+                "model": m,
+                "messages": [
+                    {"role": "system", "content": system_instruction},
+                    {"role": "user", "content": prompt}
+                ],
+                "response_format": {"type": "json_object"},
+                "temperature": 0.7
+            }
+            response = requests.post(url, headers=headers, json=payload, timeout=25)
+            response.raise_for_status()
+            data = response.json()
+            return data["choices"][0]["message"]["content"]
+        except Exception as e:
+            last_err = e
+            continue
+
+    raise last_err or Exception("Failed to receive response from Groq models.")
 
 
 def get_gemini_response(question: str, subject: str = "General", topic: str = "General") -> dict:

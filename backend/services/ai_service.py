@@ -40,7 +40,7 @@ def _call_groq(prompt: str, system_instruction: str, api_key: str) -> str:
 
 
 def get_gemini_response(question: str, subject: str = "General", topic: str = "General") -> dict:
-    load_dotenv(dotenv_path=env_path, override=True)
+    load_dotenv(dotenv_path=env_path, override=False)
     groq_key = os.getenv("GROQ_API_KEY")
     gemini_key = os.getenv("GEMINI_API_KEY")
 
@@ -141,7 +141,7 @@ def get_gemini_response(question: str, subject: str = "General", topic: str = "G
 
 
 def generate_quiz_ai(subject: str, topic: str, difficulty: str = "Intermediate", count: int = 5) -> dict:
-    load_dotenv(dotenv_path=env_path, override=True)
+    load_dotenv(dotenv_path=env_path, override=False)
     groq_key = os.getenv("GROQ_API_KEY")
     gemini_key = os.getenv("GEMINI_API_KEY")
 

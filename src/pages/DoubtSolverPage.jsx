@@ -111,7 +111,7 @@ export const DoubtSolverPage = () => {
       <Sidebar />
 
       <div className="flex-1 flex flex-col min-w-0 h-screen">
-        <Header title="AI Doubt Solver 🤖" subtitle="Real Gemini AI-powered 24/7 educational tutor" />
+        <Header title="AI Doubt Solver 🤖" subtitle="Real AI-powered 24/7 educational tutor" />
 
         <main className="flex-1 p-4 lg:p-6 max-w-5xl w-full mx-auto flex flex-col min-h-0">
           
@@ -131,12 +131,12 @@ export const DoubtSolverPage = () => {
                     LearnMate AI Tutor
                     <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
                   </h3>
-                  <span className="text-[10px] text-slate-400">Powered by FastAPI + Gemini AI</span>
+                  <span className="text-[10px] text-slate-400">Powered by FastAPI + Groq & Gemini AI</span>
                 </div>
               </div>
 
               <span className="text-[11px] bg-cyan-500/10 text-cyan-400 px-3 py-1 rounded-full border border-cyan-500/20 font-semibold flex items-center gap-1.5">
-                <Sparkles className="w-3.5 h-3.5 text-cyan-400" /> Gemini Live
+                <Sparkles className="w-3.5 h-3.5 text-cyan-400" /> AI Tutor Live
               </span>
             </div>
 

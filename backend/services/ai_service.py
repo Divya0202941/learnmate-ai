@@ -15,7 +15,7 @@ def _call_groq(prompt: str, system_instruction: str, api_key: str) -> str:
         "Authorization": f"Bearer {clean_key}",
         "Content-Type": "application/json"
     }
-    models = ["llama-3.3-70b-versatile", "llama-3.1-8b-instant", "llama3-70b-8192", "mixtral-8x7b-32768"]
+    models = ["llama-3.3-70b-versatile", "llama-3.1-8b-instant", "deepseek-r1-distill-llama-70b", "llama3-70b-8192"]
     last_err = None
 
     for m in models:

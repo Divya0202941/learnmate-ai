@@ -15,8 +15,8 @@ def _call_groq(prompt: str, system_instruction: str, api_key: str) -> str:
         "Authorization": f"Bearer {clean_key}",
         "Content-Type": "application/json"
     }
-    models = ["llama-3.3-70b-versatile", "llama-3.1-8b-instant", "llama-3.1-70b-versatile"]
-    last_err = None
+    models = ["llama-3.3-70b-versatile", "llama-3.1-8b-instant"]
+    errors = []
 
     for m in models:
         try:
@@ -30,15 +30,15 @@ def _call_groq(prompt: str, system_instruction: str, api_key: str) -> str:
             }
             response = requests.post(url, headers=headers, json=payload, timeout=25)
             if response.status_code != 200:
-                last_err = Exception(f"Groq API {response.status_code} ({m}): {response.text}")
+                errors.append(f"{m} ({response.status_code}): {response.text.strip()}")
                 continue
             data = response.json()
             return data["choices"][0]["message"]["content"]
         except Exception as e:
-            last_err = e
+            errors.append(f"{m} error: {str(e)}")
             continue
 
-    raise last_err or Exception("Failed to receive response from Groq models.")
+    raise Exception(" | ".join(errors))
 
 
 def get_gemini_response(question: str, subject: str = "General", topic: str = "General") -> dict:
